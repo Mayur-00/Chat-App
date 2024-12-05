@@ -7,8 +7,8 @@ import dotenv from "dotenv"
 
 import cookieParser from "cookie-parser"
 import { connectDB } from "./lib/db.js";
+import { app, server,  } from "./lib/socket.js";
 
-const app = express();
 
 dotenv.config()
 app.use(cookieParser())
@@ -29,7 +29,7 @@ app.use("/api/message", messageRoutes)
 
 connectDB()
 .then(() => {
-    app.listen(port,() => {
+   server.listen(port,() => {
         console.log("app is listening on port:" + port);
         
     });
